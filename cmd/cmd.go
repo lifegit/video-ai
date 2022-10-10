@@ -16,6 +16,31 @@ func init() {
 	RootCmd.AddCommand(aiResultCmd)
 }
 
+var transCmd = &cobra.Command{
+	Use:     "trans",
+	Short:   "warehousing + tran + oss + ai-put",
+	Example: "video trans",
+	RunE: func(cmd *cobra.Command, args []string) (err error) {
+		err = api.Warehousing()
+		if err != nil {
+			return
+		}
+		err = api.Tran()
+		if err != nil {
+			return
+		}
+		err = api.OssPut()
+		if err != nil {
+			return
+		}
+		err = api.AIPut()
+		if err != nil {
+			return
+		}
+		return
+	},
+}
+
 var warehousingCmd = &cobra.Command{
 	Use:     "warehousing",
 	Short:   "将mp4文件入库",
@@ -56,15 +81,6 @@ var aiResultCmd = &cobra.Command{
 	Use:     "ai-result",
 	Short:   "获取ai语音识别结果",
 	Example: "video ai-result",
-	RunE: func(cmd *cobra.Command, args []string) (err error) {
-		return api.AIResult()
-	},
-}
-
-var transCmd = &cobra.Command{
-	Use:     "trans",
-	Short:   "warehousing + tran + oss + ai-put",
-	Example: "video trans",
 	RunE: func(cmd *cobra.Command, args []string) (err error) {
 		return api.AIResult()
 	},
