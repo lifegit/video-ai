@@ -3,10 +3,10 @@
 > 使用之前，你需要先设置 `conf/base.toml.sample` 的配置！同时把 `.sample`去掉。
 
 ### 流程
-1. 建立文件目录到DB
-2. 将mp4视频 转换到 mp3 语音
-3. 将mp3上传到阿里云oss
-4. 将阿里云oss的语音上传到阿里云语音识别
+1. 建立文件目录到 DB
+2. 通过 [ffmpeg](https://www.ffmpeg.org/download.html) 将mp4视频 转换到 mp3 语音
+3. 将 mp3 上传到 [阿里云oss](https://www.aliyun.com/product/oss)
+4. 将 阿里云oss 的语音上传到[阿里云语音识别](https://ai.aliyun.com/nls/filetrans)
 
 
 ### 使用方法
