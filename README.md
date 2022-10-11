@@ -1,6 +1,6 @@
 将视频(mp4)的语音转为文本
 
-> 使用之前，你需要先设置 `conf/base.toml.sample` 的配置！同时把 `.sample`去掉。
+> 使用之前，你需要先设置 `conf/base.sample.toml` 的配置！同时把 `.sample`去掉。
 
 ### 流程
 1. 建立文件目录到 DB
