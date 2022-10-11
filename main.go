@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-//go:generate go build -o main -ldflags "-s -w"
+//go:generate go build -o video -ldflags "-s -w"
 func main() {
 	if err := cmd.RootCmd.Execute(); err != nil {
 		log.Fatal(err)
