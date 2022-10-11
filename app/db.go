@@ -76,8 +76,7 @@ func OpenConnection() (db *gorm.DB, err error) {
 	//	}
 	//	db, err = gorm.Open(sqlserver.Open(dbDSN), gormConf)
 	default:
-		log.Println("testing sqlite3...")
-		//d, _:= file.GetAppCurrentPath()
+		//log.Println("testing sqlite3...")
 		db, err = gorm.Open(sqlite.Open(Global.DB.Addr), gormConf)
 	}
 

@@ -5,7 +5,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var RootCmd = &cobra.Command{}
+var RootCmd = &cobra.Command{
+	Short: "将视频(mp4)的语音转为文本",
+	Long:  " 执行步骤: \r\n 1.warehousing \r\n 2. tran \r\n 3. oss \r\n 4. ai-put \r\n 5. ai-result \r\n ‼️ 1. 步骤1-4，可以直接用 video trans。 \r\n ‼️ 2.执行完第四步先等待一会再执行第五步，识别是需要时间的。",
+}
 
 func init() {
 	RootCmd.AddCommand(transCmd)
