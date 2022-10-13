@@ -6,7 +6,7 @@
 *.so
 *.dylib
 *.sample
-ffmpeg
+/ffmpeg
 sqlite.db
 base.toml
 main
