@@ -3,6 +3,7 @@ package api
 import (
 	"fmt"
 	"github.com/fatih/color"
+	"github.com/lifegit/go-gulu/v2/pkg/fire"
 	"github.com/lifegit/video/app"
 	"github.com/lifegit/video/models"
 	"github.com/lifegit/video/pkg/ffmpeg"
@@ -16,7 +17,10 @@ func Tran() (err error) {
 	}
 
 	var videos []models.Videos
-	err = app.DB.CrudAll(models.Videos{}, &videos)
+	err = app.DB.
+		Clause(fire.WhereCompare("mp4", "", fire.CompareNeq)).
+		Clause(fire.WhereCompare("mp3", "", fire.CompareEq)).
+		CrudAll(models.Videos{}, &videos)
 	if err != nil {
 		return
 	}
