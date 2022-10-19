@@ -15,7 +15,7 @@ var RootCmd = &cobra.Command{
 
 func init() {
 	RootCmd.AddCommand(transCmd)
-	transCmd.Flags().IntVarP(&Trans.Wait, "wait", "w", 120, "发送到AI后等待多少秒取回结果")
+	transCmd.Flags().IntVarP(&Trans.Wait, "wait", "w", 180, "发送到AI后等待多少秒取回结果")
 	RootCmd.AddCommand(warehousingCmd)
 	RootCmd.AddCommand(tranCmd)
 	RootCmd.AddCommand(ossPutCmd)
@@ -48,7 +48,9 @@ var transCmd = &cobra.Command{
 			return
 		}
 		for i := range make([]int, Trans.Wait) {
-			fmt.Println(fmt.Sprintf("还需要等待%s秒", color.YellowString("%d", Trans.Wait-i)))
+			if i%5 == 0 {
+				fmt.Println(fmt.Sprintf("还需要等待%s秒", color.YellowString("%d", Trans.Wait-i)))
+			}
 			time.Sleep(time.Second)
 		}
 		err = api.AIResult()
