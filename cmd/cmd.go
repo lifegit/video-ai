@@ -1,8 +1,11 @@
 package cmd
 
 import (
+	"fmt"
+	"github.com/fatih/color"
 	"github.com/lifegit/video/api"
 	"github.com/spf13/cobra"
+	"time"
 )
 
 var RootCmd = &cobra.Command{
@@ -12,6 +15,7 @@ var RootCmd = &cobra.Command{
 
 func init() {
 	RootCmd.AddCommand(transCmd)
+	transCmd.Flags().IntVarP(&Trans.Wait, "wait", "w", 60, "发送到AI后等待多少秒取回结果")
 	RootCmd.AddCommand(warehousingCmd)
 	RootCmd.AddCommand(tranCmd)
 	RootCmd.AddCommand(ossPutCmd)
@@ -19,9 +23,12 @@ func init() {
 	RootCmd.AddCommand(aiResultCmd)
 }
 
+var Trans struct {
+	Wait int
+}
 var transCmd = &cobra.Command{
 	Use:     "trans",
-	Short:   "warehousing + tran + oss + ai-put",
+	Short:   "warehousing + tran + oss + ai-put + ai-result",
 	Example: "video trans",
 	RunE: func(cmd *cobra.Command, args []string) (err error) {
 		err = api.Warehousing()
@@ -40,6 +47,12 @@ var transCmd = &cobra.Command{
 		if err != nil {
 			return
 		}
+		for i := range make([]int, Trans.Wait) {
+			fmt.Println(fmt.Sprintf("还需要等待%s秒", color.YellowString("%d", Trans.Wait-i)))
+			time.Sleep(time.Second)
+		}
+		err = api.AIResult()
+
 		return
 	},
 }
