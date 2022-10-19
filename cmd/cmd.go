@@ -15,7 +15,7 @@ var RootCmd = &cobra.Command{
 
 func init() {
 	RootCmd.AddCommand(transCmd)
-	transCmd.Flags().IntVarP(&Trans.Wait, "wait", "w", 60, "发送到AI后等待多少秒取回结果")
+	transCmd.Flags().IntVarP(&Trans.Wait, "wait", "w", 120, "发送到AI后等待多少秒取回结果")
 	RootCmd.AddCommand(warehousingCmd)
 	RootCmd.AddCommand(tranCmd)
 	RootCmd.AddCommand(ossPutCmd)
