@@ -55,7 +55,10 @@ func (a *ai) request(req *requests.CommonRequest) (res map[string]interface{}, e
 }
 
 func (a *ai) Send(urlPath string) (res string, err error) {
-	u, _ := url.Parse(urlPath)
+	u, err := url.Parse(urlPath)
+	if err != nil {
+		return res, err
+	}
 	fileLink := strings.ReplaceAll(u.String(), "#", "%23")
 
 	m := map[string]string{
